@@ -1,578 +1,241 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="zh">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.2">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>德州扑克买入结算工具</title>
+    <style>
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        .bg-\[\#f5f7fb\] { background-color: #f5f7fb; }
+        .min-h-screen { min-height: 100vh; }
+        .space-y-6 > :not([hidden]) ~ :not([hidden]) { --tw-space-y-reverse: 0; margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse))); margin-bottom: calc(1.5rem * var(--tw-space-y-reverse)); }
+        .p-4 { padding: 1rem; }
+        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+        .font-bold { font-weight: 700; }
+        .bg-white { background-color: #ffffff; }
+        .rounded-2xl { border-radius: 1rem; }
+        .shadow { --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow); }
+        .grid { display: grid; }
+        .gap-4 { gap: 1rem; }
+        .md\:grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .gap-2 { gap: 0.5rem; }
+        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+        .rounded-lg { border-radius: 0.5rem; }
+        .border { border-width: 1px; }
+        .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+        .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+        .bg-sky-50 { background-color: #f0f9ff; }
+        .focus\:outline-none:focus { outline: 2px solid transparent; outline-offset: 2px; }
+        .focus\:ring:focus { --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color); --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color); box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000); }
+        .focus\:ring-sky-200:focus { --tw-ring-color: #e0f2fe; }
+        .bg-emerald-50 { background-color: #ecfdf5; }
+        .focus\:ring-emerald-200:focus { --tw-ring-color: #a7f3d0; }
+        .bg-purple-50 { background-color: #faf5ff; }
+        .focus\:ring-purple-200:focus { --tw-ring-color: #e9d5ff; }
+        .md\:col-span-2 { grid-column: span 2 / span 2; }
+        .flex-1 { flex: 1 1 0%; }
+        .bg-indigo-50 { background-color: #eef2ff; }
+        .focus\:ring-indigo-200:focus { --tw-ring-color: #c7d2fe; }
+        .rounded-2xl { border-radius: 1rem; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+        .bg-indigo-600 { background-color: #4f46e5; }
+        .hover\:bg-indigo-700:hover { background-color: #4338ca; }
+        .text-white { color: #ffffff; }
+        .shadow { --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow); }
+        .mt-2 { margin-top: 0.5rem; }
+        .text-xs { font-size: 0.75rem; line-height: 1rem; }
+        .text-gray-600 { color: #4b5563; }
+        .inline-flex { display: inline-flex; }
+        .gap-2 { gap: 0.5rem; }
+        .overflow-x-auto { overflow-x: auto; }
+        .min-w-full { min-width: 100%; }
+        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+        .text-gray-600 { color: #4b5563; }
+        .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+        .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+        .text-left { text-align: left; }
+        .border-t { border-top-width: 1px; }
+        .align-top { vertical-align: top; }
+        .font-medium { font-weight: 500; }
+        .mt-1 { margin-top: 0.25rem; }
+        .text-gray-500 { color: #6b7280; }
+        .break-words { overflow-wrap: break-word; }
+        .flex-wrap { flex-wrap: wrap; }
+        .bg-cyan-600 { background-color: #0891b2; }
+        .hover\:bg-cyan-700:hover { background-color: #0e7490; }
+        .rounded-2xl { border-radius: 1rem; }
+        .text-white { color: #ffffff; }
+        .bg-blue-50 { background-color: #eff6ff; }
+        .focus\:ring-blue-200:focus { --tw-ring-color: #bfdbfe; }
+        .w-28 { width: 7rem; }
+        .bg-yellow-50 { background-color: #fffbeb; }
+        .focus\:ring-yellow-200:focus { --tw-ring-color: #fef08a; }
+        .gap-1 { gap: 0.25rem; }
+        .text-gray-700 { color: #374151; }
+        .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+        .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+        .bg-emerald-50 { background-color: #ecfdf5; }
+        .flex-col { flex-direction: column; }
+        .items-start { align-items: flex-start; }
+        .bg-purple-600 { background-color: #9333ea; }
+        .hover\:bg-purple-700:hover { background-color: #7e22ce; }
+        .bg-purple-100 { background-color: #f3e8ff; }
+        .hover\:bg-purple-200:hover { background-color: #e9d5ff; }
+        .leading-6 { line-height: 1.5rem; }
+        .text-green-600 { color: #16a34a; }
+        .text-red-600 { color: #dc2626; }
+        .bg-rose-600 { background-color: #e11d48; }
+        .hover\:bg-rose-700:hover { background-color: #be123c; }
+        .bg-gray-300 { background-color: #d1d5db; }
+        .cursor-not-allowed { cursor: not-allowed; }
+        .space-y-1 > :not([hidden]) ~ :not([hidden]) { --tw-space-y-reverse: 0; margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse))); margin-bottom: calc(0.25rem * var(--tw-space-y-reverse)); }
+        .text-amber-700 { color: #b45309; }
+        .bg-amber-600 { background-color: #d97706; }
+        .hover\:bg-amber-700:hover { background-color: #b45309; }
+        .font-semibold { font-weight: 600; }
+        .bg-orange-50 { background-color: #fff7ed; }
+        .focus\:ring-orange-200:focus { --tw-ring-color: #fed7aa; }
+        .no-spinner::-webkit-outer-spin-button, .no-spinner::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        .no-spinner { -moz-appearance: textfield; }
+    </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="zh"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;德州扑克买入结算工具&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bg-\[\#f5f7fb\] { background-color: #f5f7fb; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.min-h-screen { min-height: 100vh; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.space-y-6 &gt; :not([hidden]) ~ :not([hidden]) { --tw-space-y-reverse: 0; margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse))); margin-bottom: calc(1.5rem * var(--tw-space-y-reverse)); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.p-4 { padding: 1rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.text-2xl { font-size: 1.5rem; line-height: 2rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.font-bold { font-weight: 700; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bg-white { background-color: #ffffff; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.rounded-2xl { border-radius: 1rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.shadow { --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.grid { display: grid; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.gap-4 { gap: 1rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.md\:grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.flex { display: flex; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.items-center { align-items: center; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.gap-2 { gap: 0.5rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.text-sm { font-size: 0.875rem; line-height: 1.25rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.rounded-lg { border-radius: 0.5rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.border { border-width: 1px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bg-sky-50 { background-color: #f0f9ff; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.focus\:outline-none:focus { outline: 2px solid transparent; outline-offset: 2px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.focus\:ring:focus { --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color); --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color); box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.focus\:ring-sky-200:focus { --tw-ring-color: #e0f2fe; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bg-emerald-50 { background-color: #ecfdf5; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.focus\:ring-emerald-200:focus { --tw-ring-color: #a7f3d0; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bg-purple-50 { background-color: #faf5ff; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.focus\:ring-purple-200:focus { --tw-ring-color: #e9d5ff; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.md\:col-span-2 { grid-column: span 2 / span 2; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.flex-1 { flex: 1 1 0%; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bg-indigo-50 { background-color: #eef2ff; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.focus\:ring-indigo-200:focus { --tw-ring-color: #c7d2fe; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.rounded-2xl { border-radius: 1rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.px-4 { padding-left: 1rem; padding-right: 1rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bg-indigo-600 { background-color: #4f46e5; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hover\:bg-indigo-700:hover { background-color: #4338ca; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.text-white { color: #ffffff; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.shadow { --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.mt-2 { margin-top: 0.5rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.text-xs { font-size: 0.75rem; line-height: 1rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.text-gray-600 { color: #4b5563; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.inline-flex { display: inline-flex; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.gap-2 { gap: 0.5rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.overflow-x-auto { overflow-x: auto; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.min-w-full { min-width: 100%; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.text-sm { font-size: 0.875rem; line-height: 1.25rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.text-gray-600 { color: #4b5563; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.text-left { text-align: left; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.border-t { border-top-width: 1px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.align-top { vertical-align: top; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.font-medium { font-weight: 500; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.mt-1 { margin-top: 0.25rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.text-gray-500 { color: #6b7280; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.break-words { overflow-wrap: break-word; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.flex-wrap { flex-wrap: wrap; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bg-cyan-600 { background-color: #0891b2; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hover\:bg-cyan-700:hover { background-color: #0e7490; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.rounded-2xl { border-radius: 1rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.text-white { color: #ffffff; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bg-blue-50 { background-color: #eff6ff; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.focus\:ring-blue-200:focus { --tw-ring-color: #bfdbfe; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.w-28 { width: 7rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bg-yellow-50 { background-color: #fffbeb; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.focus\:ring-yellow-200:focus { --tw-ring-color: #fef08a; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.gap-1 { gap: 0.25rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.text-gray-700 { color: #374151; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bg-emerald-50 { background-color: #ecfdf5; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.flex-col { flex-direction: column; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.items-start { align-items: flex-start; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bg-purple-600 { background-color: #9333ea; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hover\:bg-purple-700:hover { background-color: #7e22ce; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bg-purple-100 { background-color: #f3e8ff; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hover\:bg-purple-200:hover { background-color: #e9d5ff; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.leading-6 { line-height: 1.5rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.text-green-600 { color: #16a34a; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.text-red-600 { color: #dc2626; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bg-rose-600 { background-color: #e11d48; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hover\:bg-rose-700:hover { background-color: #be123c; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bg-gray-300 { background-color: #d1d5db; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.cursor-not-allowed { cursor: not-allowed; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.space-y-1 &gt; :not([hidden]) ~ :not([hidden]) { --tw-space-y-reverse: 0; margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse))); margin-bottom: calc(0.25rem * var(--tw-space-y-reverse)); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.text-amber-700 { color: #b45309; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bg-amber-600 { background-color: #d97706; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hover\:bg-amber-700:hover { background-color: #b45309; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.font-semibold { font-weight: 600; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bg-orange-50 { background-color: #fff7ed; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.focus\:ring-orange-200:focus { --tw-ring-color: #fed7aa; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.no-spinner::-webkit-outer-spin-button, .no-spinner::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.no-spinner { -moz-appearance: textfield; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const initialNames = ["Jim", "li yuelin", "Jack", "Ying qi", "Annmary", "Bo", "Sue", "he", "Emma", "Sun", "Alex", "Tony", "ke", "Dudu", "Jasonma"];</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const DiscountOptions = [{ key: "none", label: "不打折", factor: 1 }, { key: "half", label: "除2", factor: 0.5 }, { key: "third", label: "除3", factor: 1 / 3 }];</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const round5up = (v) =&gt; Math.ceil(v / 5) * 5;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const currency = (n) =&gt; { const v = Number(n) || 0; return (Math.round(v * 100) / 100).toFixed(2); };</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const clampMinZero = (n) =&gt; Math.max(0, Number(n) || 0);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function tierTaxByWin(win) {</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const w = Number(win) || 0;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>if (w &lt; 50) return 0;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>if (w &lt; 75) return 5;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const blocks = Math.floor((w - 75) / 50);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>return 10 + 5 * blocks;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function computeAll(players, globalDiscountKey, starFee, memberFee, acceptedDiffRaw, preFeaturePayoutRaw) {</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const factor = (DiscountOptions.find((d) =&gt; d.key === globalDiscountKey) || { factor: 1 }).factor;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const totalBuyRaw = players.reduce((a, p) =&gt; a + (p.buys || []).reduce((x, y) =&gt; x + y, 0), 0);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const totalPayoutRaw = players.reduce((a, p) =&gt; a + (p.includePayout ? (Number(p.payoutStr) || 0) : 0), 0);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const trialBalanceExtraRaw = Number(preFeaturePayoutRaw) || 0;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const trialBalanceRaw = totalBuyRaw - totalPayoutRaw - trialBalanceExtraRaw;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const trialBalanceVisible = trialBalanceRaw - (acceptedDiffRaw || 0);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>let totalDeltaDiscounted = 0;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>let totalDeltaRounded = 0;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>let totalRoundingOverflow = 0;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>let totalTaxPlayers = 0;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const rows = players.map((p) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const rawBuy = (p.buys || []).reduce((s, v) =&gt; s + v, 0);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const star = p.stargazer ? Number(starFee) || 0 : 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const payout = p.includePayout ? (Number(p.payoutStr) || 0) : 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const discountedDelta = (payout - rawBuy - star) * factor;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const lossForRelief = Math.max(0, -discountedDelta);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const roundedDelta = round5up(discountedDelta);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const roundingOverflow = roundedDelta - discountedDelta;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const memberBase = (Number(p.memberCount || 0) || 0) * (Number(memberFee) || 0);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let memberAfterRelief = memberBase;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if ((p.memberCount || 0) &gt;= 2) {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>if (lossForRelief &gt;= 300) memberAfterRelief = memberBase * 0.5;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>else if (lossForRelief &gt;= 200) memberAfterRelief = clampMinZero(memberBase - 10);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let net = roundedDelta - memberAfterRelief;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let tax = tierTaxByWin(net);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if ((p.memberCount || 0) &gt;= 2) {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>if (tax &gt;= 40) tax = clampMinZero(tax - 20);</p>
-<p class="p1"><span class="Apple-converted-space">              </span>else if (tax &gt;= 20) tax = clampMinZero(tax - 10);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>totalDeltaDiscounted += discountedDelta;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>totalDeltaRounded += roundedDelta;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>totalRoundingOverflow += roundingOverflow;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (tax &gt; 0) totalTaxPlayers += tax;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>return {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>id: p.id,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>name: p.name,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>buys: p.buys,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>payoutStr: p.payoutStr,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>includePayout: p.includePayout,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>stargazer: p.stargazer,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>memberCount: p.memberCount,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>rawBuy,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>star,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>discountedDelta,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>roundedDelta,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>roundingOverflow,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>memberBase,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>memberAfterRelief,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>lossForRelief,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>net,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>tax,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>};</p>
-<p class="p1"><span class="Apple-converted-space">          </span>});</p>
-<p class="p1"><span class="Apple-converted-space">          </span>return {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>factor,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>rows,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>totalBuyRaw,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>totalPayoutRaw,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>trialBalanceRaw,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>trialBalanceVisible,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>totalDeltaDiscounted,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>totalDeltaRounded,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>totalRoundingOverflow,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>totalTaxPlayers,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>trialBalanceExtraRaw,</p>
-<p class="p1"><span class="Apple-converted-space">          </span>};</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function App() {</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const [speakOn, setSpeakOn] = React.useState(true);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const [speakRate, setSpeakRate] = React.useState(1.0);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const speakLock = React.useRef(false);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>function speak(text) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>if (!speakOn || typeof window === "undefined" || !window.speechSynthesis) return;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>if (speakLock.current) return;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>speakLock.current = true;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>const u = new SpeechSynthesisUtterance(text);</p>
-<p class="p1"><span class="Apple-converted-space">              </span>u.rate = speakRate;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>u.lang = "zh-CN";</p>
-<p class="p1"><span class="Apple-converted-space">              </span>u.onend = () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>speakLock.current = false;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>};</p>
-<p class="p1"><span class="Apple-converted-space">              </span>window.speechSynthesis.speak(u);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} catch {}</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const [globalDiscountKey, setGlobalDiscountKey] = React.useState("none");</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const [starFee, setStarFee] = React.useState(20);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const [memberFee, setMemberFee] = React.useState(20);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const [starFeeDraft, setStarFeeDraft] = React.useState("20");</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const [memberFeeDraft, setMemberFeeDraft] = React.useState("20");</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const [payoutDraft, setPayoutDraft] = React.useState({});</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const [newPlayerNameDraft, setNewPlayerNameDraft] = React.useState("");</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const [acceptedDiffRaw, setAcceptedDiffRaw] = React.useState(0);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const [acceptedTaxFromDiff, setAcceptedTaxFromDiff] = React.useState(0);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const [preFeaturePayoutRaw, setPreFeaturePayoutRaw] = React.useState(0);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const [players, setPlayers] = React.useState(() =&gt; initialNames.map((name, idx) =&gt; ({ id: `${idx + 1}`, name, buys: [], payoutStr: "", includePayout: false, stargazer: false, memberCount: 0 })));</p>
-<p class="p1"><span class="Apple-converted-space">          </span>function addPlayer() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const name = newPlayerNameDraft.trim();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (!name) return;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>setPlayers((prev) =&gt; [...prev, {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>id: `${Date.now()}`,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>name,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>buys: [],</p>
-<p class="p1"><span class="Apple-converted-space">              </span>payoutStr: "",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>includePayout: false,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>stargazer: false,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>memberCount: 0,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}, ]);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>setNewPlayerNameDraft("");</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}</p>
-<p class="p1"><span class="Apple-converted-space">          </span>function removePlayer(id) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>setPlayers((prev) =&gt; prev.filter((p) =&gt; p.id !== id));</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}</p>
-<p class="p1"><span class="Apple-converted-space">          </span>function updatePlayer(id, updater) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>setPlayers((prev) =&gt; prev.map((p) =&gt; (p.id === id ? updater(p) : p)));</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const computed = React.useMemo(() =&gt; computeAll(players, globalDiscountKey, starFee, memberFee, acceptedDiffRaw, preFeaturePayoutRaw), [players, globalDiscountKey, starFee, memberFee, acceptedDiffRaw, preFeaturePayoutRaw]);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>function acceptCurrentDifference() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const diffRaw = computed.trialBalanceRaw - acceptedDiffRaw;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (Math.abs(diffRaw) &lt; 1e-9) return;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const intoTax = diffRaw * (computed.factor || 1);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>setAcceptedDiffRaw((v) =&gt; v + diffRaw);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>setAcceptedTaxFromDiff((v) =&gt; v + intoTax);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>alert(`已接受差额：原始 ¥${currency(diffRaw)}，折后入税池 ¥${currency(intoTax)}`);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}</p>
-<p class="p1"><span class="Apple-converted-space">          </span>function Card({</p>
-<p class="p1"><span class="Apple-converted-space">            </span>children</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>return React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>className: "bg-white rounded-2xl shadow p-4"</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}, children);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}</p>
-<p class="p1"><span class="Apple-converted-space">          </span>return React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "min-h-screen p-4 space-y-6 bg-[#f5f7fb]"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("h1", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "text-2xl font-bold"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u5FB7\u5DDE\u6251\u514B\u4E70\u5165\u7ED3\u7B97\u5DE5\u5177"), React.createElement(Card, null, React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "grid gap-4 md:grid-cols-5"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("label", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "flex items-center gap-2"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("span", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "text-sm"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u5168\u5C40\u6253\u6298"), React.createElement("select", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "rounded-lg border px-3 py-2 bg-sky-50 focus:outline-none focus:ring focus:ring-sky-200",</p>
-<p class="p1"><span class="Apple-converted-space">            </span>value: globalDiscountKey,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>onChange: (e) =&gt; setGlobalDiscountKey(e.target.value)</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, DiscountOptions.map((d) =&gt; React.createElement("option", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>key: d.key,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>value: d.key</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, d.label)))), React.createElement("label", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "flex items-center gap-2"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("span", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "text-sm"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u89C2\u661F\u8D39\u7528"), React.createElement("input", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>type: "text",</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "rounded-lg border px-3 py-2 bg-emerald-50 focus:outline-none focus:ring focus:ring-emerald-200",</p>
-<p class="p1"><span class="Apple-converted-space">            </span>value: starFeeDraft,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>onChange: (e) =&gt; setStarFeeDraft(e.target.value),</p>
-<p class="p1"><span class="Apple-converted-space">            </span>onBlur: () =&gt; setStarFee(Number(starFeeDraft) || 0)</p>
-<p class="p1"><span class="Apple-converted-space">          </span>})), React.createElement("label", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "flex items-center gap-2"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("span", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "text-sm"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u4F1A\u5458\u5355\u6B21"), React.createElement("input", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>type: "text",</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "rounded-lg border px-3 py-2 bg-purple-50 focus:outline-none focus:ring focus:ring-purple-200",</p>
-<p class="p1"><span class="Apple-converted-space">            </span>value: memberFeeDraft,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>onChange: (e) =&gt; setMemberFeeDraft(e.target.value),</p>
-<p class="p1"><span class="Apple-converted-space">            </span>onBlur: () =&gt; setMemberFee(Number(memberFeeDraft) || 0)</p>
-<p class="p1"><span class="Apple-converted-space">          </span>})), React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "flex items-center gap-2 md:col-span-2"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("input", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>placeholder: "\u65B0\u73A9\u5BB6\u540D\u5B57",</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "rounded-lg border px-3 py-2 flex-1 bg-indigo-50 focus:outline-none focus:ring focus:ring-indigo-200",</p>
-<p class="p1"><span class="Apple-converted-space">            </span>value: newPlayerNameDraft,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>onChange: (e) =&gt; setNewPlayerNameDraft(e.target.value),</p>
-<p class="p1"><span class="Apple-converted-space">            </span>onKeyDown: (e) =&gt; e.key === "Enter" &amp;&amp; addPlayer()</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}), React.createElement("button", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "rounded-2xl px-4 py-2 text-white bg-indigo-600 hover:bg-indigo-700 shadow",</p>
-<p class="p1"><span class="Apple-converted-space">            </span>onClick: addPlayer</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u6DFB\u52A0")), React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "mt-2 text-xs text-gray-600 flex items-center gap-4"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("label", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "inline-flex items-center gap-2"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("input", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>type: "checkbox",</p>
-<p class="p1"><span class="Apple-converted-space">            </span>checked: speakOn,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>onChange: (e) =&gt; setSpeakOn(e.target.checked)</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}), React.createElement("span", null, "\u8BED\u97F3\u64AD\u62A5")), React.createElement("label", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "inline-flex items-center gap-2"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("span", null, "\u8BED\u901F"), React.createElement("input", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>type: "range",</p>
-<p class="p1"><span class="Apple-converted-space">            </span>min: 0.7,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max: 1.3,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>step: 0.1,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>value: speakRate,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>onChange: (e) =&gt; setSpeakRate(Number(e.target.value))</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}), React.createElement("span", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "text-xs"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, speakRate.toFixed(1))))), React.createElement(Card, null, React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "overflow-x-auto"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("table", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "min-w-full text-sm"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("thead", null, React.createElement("tr", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "text-gray-600"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("th", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "px-3 py-2 text-left"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u73A9\u5BB6 / \u4E70\u5165\u8BB0\u5F55"), React.createElement("th", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "px-3 py-2 text-left"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u4E70\u5165"), React.createElement("th", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "px-3 py-2 text-left"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u5151\u4ED8"), React.createElement("th", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "px-3 py-2 text-left"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u89C2\u661F"), React.createElement("th", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "px-3 py-2 text-left"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u4F1A\u5458"), React.createElement("th", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "px-3 py-2 text-left"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u51C0\u989D/\u6298\u540E/\u7A0E"), React.createElement("th", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "px-3 py-2 text-left"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u64CD\u4F5C"))), React.createElement("tbody", null, players.map((p) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const row = computed.rows.find((r) =&gt; r.id === p.id) || {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>id: p.id,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>name: p.name,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>buys: [],</p>
-<p class="p1"><span class="Apple-converted-space">              </span>payoutStr: "",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>includePayout: false,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>stargazer: false,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>memberCount: 0,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>rawBuy: 0,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>star: 0,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>discountedDelta: 0,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>roundedDelta: 0,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>roundingOverflow: 0,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>memberBase: 0,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>memberAfterRelief: 0,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>lossForRelief: 0,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>net: 0,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>tax: 0,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>};</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const canDelete = (p.buys || []).length === 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>return React.createElement("tr", {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>key: p.id,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>className: "border-t align-top"</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}, React.createElement("td", {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>className: "px-3 py-3"</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}, React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>className: "font-medium"</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}, p.name), React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>className: "mt-1 text-xs text-gray-500 break-words"</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}, (p.buys || []).length ? `\u4E70\u5165\u8BB0\u5F55\uFF1A${p.buys.join(", ")}` : "\u6682\u65E0\u4E70\u5165\u8BB0\u5F55")), React.createElement("td", {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>className: "px-3 py-3"</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}, React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>className: "flex flex-wrap items-center gap-2"</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}, React.createElement("button", {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>className: "rounded-2xl px-3 py-2 text-white bg-cyan-600 hover:bg-cyan-700 shadow",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>onClick: () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>updatePlayer(p.id, (pp) =&gt; ({ ...pp,</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>buys: [...pp.buys, 100]</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}));</p>
-<p class="p1"><span class="Apple-converted-space">                </span>speak(`${p.name} \u4E70\u5165 100 \u5143`);</p>
-<p class="p1"><span class="Apple-converted-space">              </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}, "+100"), React.createElement("select", {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>className: "rounded-lg border px-3 py-2 bg-blue-50 focus:outline-none focus:ring focus:ring-blue-200",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>defaultValue: "",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>onChange: (e) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const v = Number(e.target.value || 0);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (v &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>updatePlayer(p.id, (pp) =&gt; ({ ...pp,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>buys: [...pp.buys, v]</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>}));</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>speak(`${p.name} \u4E70\u5165 ${v} \u5143`);</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>e.target.value = "";</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">              </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}, React.createElement("option", {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>value: "",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>disabled: true</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}, "\u5FEB\u6377"), React.createElement("option", {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>value: "50"</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}, "+50"), React.createElement("option", {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>value: "200"</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}, "+200"), React.createElement("option", {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>value: "300"</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}, "+300")))), React.createElement("td", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "px-3 py-3"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "flex items-center gap-2"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("input", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "no-spinner rounded-lg border px-3 py-2 w-28 bg-yellow-50 focus:outline-none focus:ring focus:ring-yellow-200",</p>
-<p class="p1"><span class="Apple-converted-space">            </span>type: "text",</p>
-<p class="p1"><span class="Apple-converted-space">            </span>value: payoutDraft[p.id] ?? p.payoutStr,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>onChange: (e) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>const v = e.target.value;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>setPayoutDraft((d) =&gt; ({ ...d,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>[p.id]: v</p>
-<p class="p1"><span class="Apple-converted-space">              </span>}));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">            </span>onBlur: (e) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>const v = e.target.value;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>updatePlayer(p.id, (pp) =&gt; ({ ...pp,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>payoutStr: v</p>
-<p class="p1"><span class="Apple-converted-space">              </span>}));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}), React.createElement("label", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "inline-flex items-center gap-1 text-xs text-gray-700"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("input", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>type: "checkbox",</p>
-<p class="p1"><span class="Apple-converted-space">            </span>checked: p.includePayout,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>onChange: (e) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>const checked = e.target.checked;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>updatePlayer(p.id, (pp) =&gt; ({ ...pp,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>includePayout: checked</p>
-<p class="p1"><span class="Apple-converted-space">              </span>}));</p>
-<p class="p1"><span class="Apple-converted-space">              </span>if (checked) speak(`${p.name} \u5151\u4ED8\u8BA1\u5165\u8BA1\u7B97`);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}), "\u8BA1\u5165"))), React.createElement("td", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "px-3 py-3"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("label", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "inline-flex items-center gap-2"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("input", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>type: "checkbox",</p>
-<p class="p1"><span class="Apple-converted-space">            </span>checked: p.stargazer,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>onChange: (e) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>const checked = e.target.checked;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>updatePlayer(p.id, (pp) =&gt; ({ ...pp,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>stargazer: checked</p>
-<p class="p1"><span class="Apple-converted-space">              </span>}));</p>
-<p class="p1"><span class="Apple-converted-space">              </span>if (checked) speak(`${p.name} \u9009\u62E9\u89C2\u661F\uFF0C\u8D39\u7528 \u00A5${currency(starFee)} \u5143`);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}), React.createElement("span", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "px-2 py-1 rounded bg-emerald-50"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, p.stargazer ? `\u00A5${currency(starFee)}` : "\u672A\u9009"))), React.createElement("td", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "px-3 py-3"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "flex flex-col items-start gap-1"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "flex items-center gap-2"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("button", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "rounded-2xl px-3 py-2 text-white bg-purple-600 hover:bg-purple-700 shadow",</p>
-<p class="p1"><span class="Apple-converted-space">            </span>onClick: () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>updatePlayer(p.id, (pp) =&gt; ({ ...pp,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>memberCount: pp.memberCount + 1</p>
-<p class="p1"><span class="Apple-converted-space">              </span>}));</p>
-<p class="p1"><span class="Apple-converted-space">              </span>speak(`${p.name} \u589E\u52A0\u4E00\u6B21\u4F1A\u5458\uFF0C\u5F53\u524D ${p.memberCount + 1} \u6B21`);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "+ \u4F1A\u5458"), p.memberCount &gt; 0 &amp;&amp; React.createElement("button", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "rounded-2xl px-3 py-2 bg-purple-100 hover:bg-purple-200",</p>
-<p class="p1"><span class="Apple-converted-space">            </span>onClick: () =&gt; updatePlayer(p.id, (pp) =&gt; ({ ...pp,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>memberCount: Math.max(0, pp.memberCount - 1)</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}))</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "-1")), React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "text-xs text-gray-700"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u6B21\u6570\uFF1A", p.memberCount, " \u91D1\u989D\uFF1A\u00A5", currency(row.memberAfterRelief || 0)))), React.createElement("td", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "px-3 py-3"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "text-sm leading-6"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: row.net &gt;= 0 ? "text-green-600" : "text-red-600"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u51C0\u989D\uFF1A", row.net &gt;= 0 ? "+" : "", "\u00A5", currency(row.net)), React.createElement("div", null, "\u6298\u540E\u51C0\u5DEE\uFF08\u53D6\u6574\uFF09\uFF1A\u00A5", currency(row.roundedDelta)), React.createElement("div", null, "\u7A0E\uFF1A\u00A5", currency(row.tax)))), React.createElement("td", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "px-3 py-3"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("button", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: (canDelete ? "bg-rose-600 hover:bg-rose-700" : "bg-gray-300 cursor-not-allowed") + " rounded-2xl px-3 py-2 text-white shadow",</p>
-<p class="p1"><span class="Apple-converted-space">            </span>disabled: !canDelete,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>onClick: () =&gt; canDelete &amp;&amp; removePlayer(p.id)</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u5220\u9664"))));</p>
-<p class="p1"><span class="Apple-converted-space">        </span>})), React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "grid md:grid-cols-3 gap-4"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement(Card, null, React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "space-y-1"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("div", null, "\u6298\u524D\u603B\u4E70\u5165\uFF1A\u00A5", currency(computed.totalBuyRaw)), React.createElement("div", null, "\u6298\u524D\u603B\u5151\u4ED8\uFF1A\u00A5", currency(computed.totalPayoutRaw)), React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "text-sm"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u6298\u524D\u529F\u80FD\u8D2D\u4E70\u5151\u4ED8\uFF1A\u00A5", currency(preFeaturePayoutRaw)), React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "text-sm"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u6298\u540E\u51C0\u5DEE\uFF08\u672A\u53D6\u6574\uFF09\u603B\u8BA1\uFF1A\u00A5", currency(computed.totalDeltaDiscounted)), React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "text-sm"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u6298\u540E\u51C0\u5DEE\uFF08\u53D6\u6574\uFF09\u603B\u8BA1\uFF1A\u00A5", currency(computed.totalDeltaRounded)), React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "text-sm text-amber-700"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u53D6\u6574\u6EA2\u51FA\u5408\u8BA1\uFF1A\u00A5", currency(computed.totalRoundingOverflow), "\uFF08\u5DF2\u8BA1\u5165\u7A0E\u6C60\uFF09"), React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "text-sm"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u8BD5\u7B97\u5E73\u8861\uFF08\u6298\u524D\u4E70\u5165 - \u6298\u524D\u5151\u4ED8 - \u6298\u524D\u529F\u80FD\u8D2D\u4E70\u5151\u4ED8\uFF09\uFF1A\u00A5", currency(computed.trialBalanceVisible)), React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "text-xs text-gray-500"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u5DF2\u63A5\u53D7\u5DEE\u989D\u7D2F\u8BA1\uFF08\u539F\u59CB\uFF09\uFF1A\u00A5", currency(acceptedDiffRaw)))), React.createElement(Card, null, React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "space-y-2"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("button", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: (Math.abs(computed.trialBalanceVisible) &lt; 1e-9 ? "bg-gray-300 cursor-not-allowed" : "bg-amber-600 hover:bg-amber-700") + " rounded-2xl px-4 py-2 text-white shadow",</p>
-<p class="p1"><span class="Apple-converted-space">            </span>disabled: Math.abs(computed.trialBalanceVisible) &lt; 1e-9,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>onClick: acceptCurrentDifference</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u63A5\u53D7\u5DEE\u989D\uFF08\u5E76\u5165\u7A0E\u6C60\uFF09"), React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "text-sm text-gray-700"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u5E76\u5165\u91D1\u989D = \u5DEE\u989D \xD7 \u5F53\u524D\u6298\u6263\u7CFB\u6570\uFF08\u4E0D\u53D6\u7EDD\u5BF9\u503C\uFF09\u3002"))), React.createElement(Card, null, React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "space-y-1"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("div", null, "\u73A9\u5BB6\u5E94\u7A0E\u5408\u8BA1\uFF1A\u00A5", currency(computed.totalTaxPlayers)), React.createElement("div", null, "\u53D6\u6574\u6EA2\u51FA\u5165\u7A0E\uFF1A\u00A5", currency(computed.totalRoundingOverflow)), React.createElement("div", null, "\u63A5\u53D7\u5DEE\u989D\u5165\u7A0E\uFF1A\u00A5", currency(acceptedTaxFromDiff)), React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "font-semibold"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u7A0E\u6C60\u603B\u8BA1\uFF1A\u00A5", currency(computed.totalTaxPlayers + computed.totalRoundingOverflow + acceptedTaxFromDiff))))), React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "grid md:grid-cols-3 gap-4"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement(Card, null, React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "space-y-2"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "text-sm font-medium"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u6298\u524D\u529F\u80FD\u8D2D\u4E70\u5151\u4ED8"), React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "flex items-center gap-2"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("select", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "rounded-lg border px-3 py-2 bg-orange-50 focus:outline-none focus:ring focus:ring-orange-200",</p>
-<p class="p1"><span class="Apple-converted-space">            </span>defaultValue: "",</p>
-<p class="p1"><span class="Apple-converted-space">            </span>onChange: (e) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>const v = Number(e.target.value || 0);</p>
-<p class="p1"><span class="Apple-converted-space">              </span>if (v &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>setPreFeaturePayoutRaw((x) =&gt; x + v);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (speakOn) speak(`\u529F\u80FD\u8D2D\u4E70\u5151\u4ED8 \u589E\u52A0 ${v} \u5143`);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>e.target.value = "";</p>
-<p class="p1"><span class="Apple-converted-space">              </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, React.createElement("option", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>value: "",</p>
-<p class="p1"><span class="Apple-converted-space">            </span>disabled: true</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u9009\u62E9\u91D1\u989D"), React.createElement("option", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>value: "10"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "+10"), React.createElement("option", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>value: "20"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "+20")), React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "text-sm"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u5F53\u524D\u5408\u8BA1\uFF1A\u00A5", currency(preFeaturePayoutRaw))), React.createElement("div", {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>className: "text-xs text-gray-500"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}, "\u8BA1\u5165\u8BD5\u7B97\u5E73\u8861\u516C\u5F0F\uFF1A\u6298\u524D\u4E70\u5165 \u2212 \u6298\u524D\u5151\u4ED8 \u2212 \u6298\u524D\u529F\u80FD\u8D2D\u4E70\u5151\u4ED8\u3002")))), React.createElement("script", null, "const R=React,RD=ReactDOM;const initialNames = [\"Jim\", \"li yuelin\", \"Jack\", \"Ying qi\", \"Annmary\", \"Bo\", \"Sue\", \"he\", \"Emma\", \"Sun\", \"Alex\", \"Tony\", \"ke\", \"Dudu\", \"Jasonma\"];const DiscountOptions = [{key: \"none\", label: \"不打折\", factor: 1}, {key: \"half\", label: \"除2\", factor: 0.5}, {key: \"third\", label: \"除3\", factor: 1/3}];const round5up = (v) =&gt; Math.ceil(v / 5) * 5;const currency = (n) =&gt; {const v = Number(n) || 0;return (Math.round(v * 100) / 100).toFixed(2);};const clampMinZero = (n) =&gt; Math.max(0, Number(n) || 0);function tierTaxByWin(win) {const w = Number(win) || 0;if (w &lt; 50)return 0;if (w &lt; 75)return 5;const blocks = Math.floor((w - 75) / 50);return 10 + 5 * blocks;}function computeAll(players, globalDiscountKey, starFee, memberFee, acceptedDiffRaw, preFeaturePayoutRaw) {const factor = (DiscountOptions.find((d) =&gt; d.key === globalDiscountKey) || {factor: 1}).factor;const totalBuyRaw = players.reduce((a, p) =&gt; a + (p.buys || []).reduce((x, y) =&gt; x + y, 0), 0);const totalPayoutRaw = players.reduce((a, p) =&gt; a + (p.includePayout ? Number(p.payoutStr) || 0 : 0), 0);const trialBalanceExtraRaw = Number(preFeaturePayoutRaw) || 0;const trialBalanceRaw = totalBuyRaw - totalPayoutRaw - trialBalanceExtraRaw;const trialBalanceVisible = trialBalanceRaw - (acceptedDiffRaw || 0);let totalDeltaDiscounted = 0;let totalDeltaRounded = 0;let totalRoundingOverflow = 0;let totalTaxPlayers = 0;const rows = players.map((p) =&gt; {const rawBuy = (p.buys || []).reduce((s, v) =&gt; s + v, 0);const star = p.stargazer ? Number(starFee) || 0 : 0;const payout = p.includePayout ? Number(p.payoutStr) || 0 : 0;const discountedDelta = (payout - rawBuy - star) * factor;const lossForRelief = Math.max(0, -discountedDelta);const roundedDelta = round5up(discountedDelta);const roundingOverflow = roundedDelta - discountedDelta;const memberBase = (Number(p.memberCount || 0) || 0) * (Number(memberFee) || 0);let memberAfterRelief = memberBase;if ((p.memberCount || 0) &gt;= 2) {if (lossForRelief &gt;= 300)memberAfterRelief = memberBase * 0.5;else if (lossForRelief &gt;= 200)memberAfterRelief = clampMinZero(memberBase - 10);}let net = roundedDelta - memberAfterRelief;let tax = tierTaxByWin(net);if ((p.memberCount || 0) &gt;= 2) {if (tax &gt;= 40)tax = clampMinZero(tax - 20);else if (tax &gt;= 20)tax = clampMinZero(tax - 10);}totalDeltaDiscounted += discountedDelta;totalDeltaRounded += roundedDelta;totalRoundingOverflow += roundingOverflow;if (tax &gt; 0)</p>
-<p class="p1"><span class="Apple-converted-space">            </span>totalTaxPlayers += tax;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>return {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>id: p.id,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>name: p.name,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>buys: p.buys,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>payoutStr: p.payoutStr,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>includePayout: p.includePayout,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>stargazer: p.stargazer,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>memberCount: p.memberCount,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>rawBuy,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>star,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>discountedDelta,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>roundedDelta,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>roundingOverflow,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>memberBase,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>memberAfterRelief,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>lossForRelief,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>net,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>tax</p>
-<p class="p1"><span class="Apple-converted-space">          </span>};</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});return {factor,rows,totalBuyRaw,totalPayoutRaw,trialBalanceRaw,trialBalanceVisible,totalDeltaDiscounted,totalDeltaRounded,totalRoundingOverflow,totalTaxPlayers,trialBalanceExtraRaw};}function App() {const [speakOn, setSpeakOn] = R.useState(true);const [speakRate, setSpeakRate] = R.useState(1);const speakLock = R.useRef(false);function speak(text) {try {if (!speakOn || typeof window === \"undefined\" || !window.speechSynthesis)return;if (speakLock.current)return;speakLock.current = true;const u = new SpeechSynthesisUtterance(text);u.rate = speakRate;u.lang = \"zh-CN\";u.onend = () =&gt; {speakLock.current = false;};window.speechSynthesis.speak(u);}catch (err) {}}const [globalDiscountKey, setGlobalDiscountKey] = R.useState(\"none\");const [starFee, setStarFee] = R.useState(20);const</p>
-</body>
-</html>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <script>
+        const R = React, RD = ReactDOM;
+        const initialNames = ["Jim", "li yuelin", "Jack", "Ying qi", "Annmary", "Bo", "Sue", "he", "Emma", "Sun", "Alex", "Tony", "ke", "Dudu", "Jasonma"];
+        const DiscountOptions = [{ key: "none", label: "不打折", factor: 1 }, { key: "half", label: "除2", factor: 0.5 }, { key: "third", label: "除3", factor: 1 / 3 }];
+        const round5up = (v) => Math.ceil(v / 5) * 5;
+        const currency = (n) => { const v = Number(n) || 0; return (Math.round(v * 100) / 100).toFixed(2); };
+        const clampMinZero = (n) => Math.max(0, Number(n) || 0);
+        function tierTaxByWin(win) {
+          const w = Number(win) || 0;
+          if (w < 50) return 0;
+          if (w < 75) return 5;
+          const blocks = Math.floor((w - 75) / 50);
+          return 10 + 5 * blocks;
+        }
+        function computeAll(players, globalDiscountKey, starFee, memberFee, acceptedDiffRaw, preFeaturePayoutRaw) {
+          const factor = (DiscountOptions.find((d) => d.key === globalDiscountKey) || { factor: 1 }).factor;
+          const totalBuyRaw = players.reduce((a, p) => a + (p.buys || []).reduce((x, y) => x + y, 0), 0);
+          const totalPayoutRaw = players.reduce((a, p) => a + (p.includePayout ? (Number(p.payoutStr) || 0) : 0), 0);
+          const trialBalanceExtraRaw = Number(preFeaturePayoutRaw) || 0;
+          const trialBalanceRaw = totalBuyRaw - totalPayoutRaw - trialBalanceExtraRaw;
+          const trialBalanceVisible = trialBalanceRaw - (acceptedDiffRaw || 0);
+          let totalDeltaDiscounted = 0;
+          let totalDeltaRounded = 0;
+          let totalRoundingOverflow = 0;
+          let totalTaxPlayers = 0;
+          const rows = players.map((p) => {
+            const rawBuy = (p.buys || []).reduce((s, v) => s + v, 0);
+            const star = p.stargazer ? Number(starFee) || 0 : 0;
+            const payout = p.includePayout ? (Number(p.payoutStr) || 0) : 0;
+            const discountedDelta = (payout - rawBuy - star) * factor;
+            const lossForRelief = Math.max(0, -discountedDelta);
+            const roundedDelta = round5up(discountedDelta);
+            const roundingOverflow = roundedDelta - discountedDelta;
+            const memberBase = (Number(p.memberCount || 0) || 0) * (Number(memberFee) || 0);
+            let memberAfterRelief = memberBase;
+            if ((p.memberCount || 0) >= 2) {
+              if (lossForRelief >= 300) memberAfterRelief = memberBase * 0.5;
+              else if (lossForRelief >= 200) memberAfterRelief = clampMinZero(memberBase - 10);
+            }
+            let net = roundedDelta - memberAfterRelief;
+            let tax = tierTaxByWin(net);
+            if ((p.memberCount || 0) >= 2) {
+              if (tax >= 40) tax = clampMinZero(tax - 20);
+              else if (tax >= 20) tax = clampMinZero(tax - 10);
+            }
+            totalDeltaDiscounted += discountedDelta;
+            totalDeltaRounded += roundedDelta;
+            totalRoundingOverflow += roundingOverflow;
+            if (tax > 0) totalTaxPlayers += tax;
+            return {
+              id: p.id,
+              name: p.name,
+              buys: p.buys,
+              payoutStr: p.payoutStr,
+              includePayout: p.includePayout,
+              stargazer: p.stargazer,
+              memberCount: p.memberCount,
+              rawBuy,
+              star,
+              discountedDelta,
+              roundedDelta,
+              roundingOverflow,
+              memberBase,
+              memberAfterRelief,
+              lossForRelief,
+              net,
+              tax,
+            };
+          });
+          return {
+            factor,
+            rows,
+            totalBuyRaw,
+            totalPayoutRaw,
+            trialBalanceRaw,
+            trialBalanceVisible,
+            totalDeltaDiscounted,
+            totalDeltaRounded,
+            totalRoundingOverflow,
+            totalTaxPlayers,
+            trialBalanceExtraRaw,
+          };
+        }
+        function App() {
+          const [speakOn, setSpeakOn] = R.useState(true);
+          const [speakRate, setSpeakRate] = R.useState(1.0);
+          const speakLock = R.useRef(false);
+          function speak(text) {
+            try {
+              if (!speakOn || typeof window === "undefined" || !window.speechSynthesis) return;
+              if (speakLock.current) return;
+              speakLock.current = true;
+              const u = new SpeechSynthesisUtterance(text);
+              u.rate = speakRate;
+              u.lang = "zh-CN";
+              u.onend = () => {
+                speakLock.current = false;
+              };
+              window.speechSynthesis.speak(u);
+            } catch {}
+          }
+          const [globalDiscountKey, setGlobalDiscountKey] = R.useState("none");
+          const [starFee, setStarFee] = R.useState(20);
+          const [memberFee, setMemberFee] = R.useState(20);
+          const [starFeeDraft, setStarFeeDraft] = R.useState("20");
+          const [memberFeeDraft, setMemberFeeDraft] = R.useState("20");
+          const [payoutDraft, setPayoutDraft] = R.useState({});
+          const [newPlayerNameDraft, setNewPlayerNameDraft] = R.useState("");
+          const [acceptedDiffRaw, setAcceptedDiffRaw] = R.useState(0);
+          const [acceptedTaxFromDiff, setAcceptedTaxFromDiff] = R.useState(0);
+          const [preFeaturePayoutRaw, setPreFeaturePayoutRaw] = R.useState(0);
+          const [players, setPlayers] = R.useState(() => initialNames.map((name, idx) => ({ id: `${idx + 1}`, name, buys: [], payoutStr: "", includePayout: false, stargazer: false, memberCount: 0 })));
+          function addPlayer() {
+            const name = newPlayerNameDraft.trim();
+            if (!name) return;
+            setPlayers((prev) => [...prev, {
+              id: `${Date.now()}`,
+              name,
+              buys: [],
+              payoutStr: "",
+              includePayout: false,
+              stargazer: false,
+              memberCount: 0,
+            }, ]);
+            setNewPlayerNameDraft("");
+          }
+          function removePlayer(id) {
+            setPlayers((prev) => prev.filter((p) => p.id !== id));
+          }
+          function updatePlayer(id, updater) {
+            setPlayers((prev) => prev.map((p) => (p
