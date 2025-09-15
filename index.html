@@ -101,13 +101,12 @@
         .no-spinner::-webkit-outer-spin-button, .no-spinner::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         .no-spinner { -moz-appearance: textfield; }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
 </head>
 <body>
     <div id="root"></div>
 
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    
     <script>
         const R = React, RD = ReactDOM;
         const initialNames = ["Jim", "li yuelin", "Jack", "Ying qi", "Annmary", "Bo", "Sue", "he", "Emma", "Sun", "Alex", "Tony", "ke", "Dudu", "Jasonma"];
@@ -238,4 +237,46 @@
             setPlayers((prev) => prev.filter((p) => p.id !== id));
           }
           function updatePlayer(id, updater) {
-            setPlayers((prev) => prev.map((p) => (p
+            setPlayers((prev) => prev.map((p) => (p.id === id ? updater(p) : p)));
+          }
+          const computed = R.useMemo(() => computeAll(players, globalDiscountKey, starFee, memberFee, acceptedDiffRaw, preFeaturePayoutRaw), [players, globalDiscountKey, starFee, memberFee, acceptedDiffRaw, preFeaturePayoutRaw]);
+          function acceptCurrentDifference() {
+            const diffRaw = computed.trialBalanceRaw - acceptedDiffRaw;
+            if (Math.abs(diffRaw) < 1e-9) return;
+            const intoTax = diffRaw * (computed.factor || 1);
+            setAcceptedDiffRaw((v) => v + diffRaw);
+            setAcceptedTaxFromDiff((v) => v + intoTax);
+            alert(`已接受差额：原始 ¥${currency(diffRaw)}，折后入税池 ¥${currency(intoTax)}`);
+          }
+          function Card({
+            children
+          }) {
+            return R.createElement("div", {
+              className: "bg-white rounded-2xl shadow p-4"
+            }, children);
+          }
+          return R.createElement("div", {
+            className: "min-h-screen p-4 space-y-6 bg-[#f5f7fb]"
+          }, R.createElement("h1", {
+            className: "text-2xl font-bold"
+          }, "德州扑克买入结算工具"), R.createElement(Card, null, R.createElement("div", {
+            className: "grid gap-4 md:grid-cols-5"
+          }, R.createElement("label", {
+            className: "flex items-center gap-2"
+          }, R.createElement("span", {
+            className: "text-sm"
+          }, "全局打折"), R.createElement("select", {
+            className: "rounded-lg border px-3 py-2 bg-sky-50 focus:outline-none focus:ring focus:ring-sky-200",
+            value: globalDiscountKey,
+            onChange: (e) => setGlobalDiscountKey(e.target.value)
+          }, DiscountOptions.map((d) => R.createElement("option", {
+            key: d.key,
+            value: d.key
+          }, d.label)))), R.createElement("label", {
+            className: "flex items-center gap-2"
+          }, R.createElement("span", {
+            className: "text-sm"
+          }, "观星费用"), R.createElement("input", {
+            type: "text",
+            className: "rounded-lg border px-3 py-2 bg-emerald-50 focus:outline-none focus:ring focus:ring-emerald-200",
+            value: starFeeDraft,
